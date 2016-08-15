@@ -12,7 +12,7 @@ var bio = {
      "skills": [
          "awesomeness", "grosisitud", "excelencia", "Perfect Pixel"
      ],
-     "bioPic": "images/fry.jpg"
+     "biopic": "images/fry.jpg"
  };
 
 var work = {
@@ -54,6 +54,14 @@ var education = {
             "date": "2010 - 2015",
             "url": "http://consudec.edu.ar"
         }
+    ],
+    "onlineCourses": [
+        {
+            title: "Front-End Nanodegree",
+            school: "Udacity",
+            dates: "2016",
+            url: "https://www.udacity.com"
+        }
     ]
 };
 
@@ -82,19 +90,12 @@ bio.display = function() {
     var formattedTwitter = HTMLtwitter.replace("%data%", this.contacts.twitter);
     var formattedGithub = HTMLgithub.replace("%data%", this.contacts.github);
     var formattedLocation = HTMLlocation.replace("%data%", this.contacts.location);
-    var formattedBioPic = HTMLbioPic.replace("%data%", this.bioPic);
+    var formattedBioPic = HTMLbioPic.replace("%data%", this.biopic);
     var formattedMsg = HTMLwelcomeMsg.replace("%data%", this.welcomeMessege);
 
     // inserting bio items into html
-    $("#header").prepend(formattedRole);
-    $("#header").prepend(formattedName);
-    $("#topContacts").append(formattedMobile);
-    $("#topContacts").append(formattedEmail);
-    $("#topContacts").append(formattedTwitter);
-    $("#topContacts").append(formattedGithub);
-    $("#topContacts").append(formattedLocation);
-    $("#header").append(formattedBioPic);
-    $("#header").append(formattedMsg);
+    $("#header").prepend(formattedRole, formattedName, formattedBioPic, formattedMsg);
+    $("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedTwitter, formattedGithub, formattedLocation);
 
     // add skills if any
     if (this.skills.length > 0) {
@@ -124,10 +125,7 @@ work.display = function() {
         var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
 
         // adding jobs to the dom
-        $(".work-entry:last").append(formattedEmployerTitle);
-        $(".work-entry:last").append(formattedDate);
-        $(".work-entry:last").append(formattedLocation);
-        $(".work-entry:last").append(formattedDescription);
+        $(".work-entry:last").append(formattedEmployerTitle, formattedDate, formattedLocation, formattedDescription);
     });
 };
 
@@ -145,9 +143,7 @@ projects.display = function() {
         var formattedProjDesc = HTMLprojectDescription.replace("%data%", project.description);
 
         // adding pojects to the dom
-        $(".project-entry:last").append(formattedProjTitle);
-        $(".project-entry:last").append(formattedProjDates);
-        $(".project-entry:last").append(formattedProjDesc);
+        $(".project-entry:last").append(formattedProjTitle, formattedProjDates, formattedProjDesc);
 
         // add img if any
         if (project.images.length > 0) {
@@ -160,9 +156,9 @@ projects.display = function() {
 };
 
 education.display = function() {
-    $("#education").append(HTMLschoolStart);
-
     if (!this.schools) {return;}
+
+    $("#education").append(HTMLschoolStart);
 
     this.schools.forEach( function(sch) {
         // formatting schools into html
@@ -173,11 +169,22 @@ education.display = function() {
         var formattedSchMajor = HTMLschoolMajor.replace("%data%", sch.majors);
 
         // adding pojects to the dom
-        $(".education-entry:last").append(formattedSchName);
-        $(".education-entry:last").append(formattedSchDegree);
-        $(".education-entry:last").append(formattedSchDates);
-        $(".education-entry:last").append(formattedSchLocation);
-        $(".education-entry:last").append(formattedSchMajor);
+        $(".education-entry:last").append(formattedSchName, formattedSchDegree, formattedSchDates, formattedSchLocation,formattedSchMajor);
+    });
+
+    if (!this.onlineCourses) {return;}
+
+    $("#education").append(HTMLonlineClasses, HTMLschoolStart);
+
+    this.onlineCourses.forEach( function(course) {
+        // formatting schools into html
+        var formattedOCTitle = HTMLonlineTitle.replace("%data%", course.title);
+        var formattedOCSchool = HTMLonlineSchool.replace("%data%", course.school);
+        var formattedOCDates = HTMLonlineDates.replace("%data%", course.dates);
+        var formattedOCUrl = HTMLonlineURL.replace("%data%", course.url);
+
+        // adding pojects to the dom
+        $(".education-entry:last").append(formattedOCTitle, formattedOCSchool, formattedOCDates, formattedOCUrl);
     });
 };
 
