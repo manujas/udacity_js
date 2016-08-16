@@ -8,7 +8,7 @@ var bio = {
         "twitter": "@manujas4",
         "location": "Ramos Mejía"
     },
-    "welcomeMessege": "Hi there, Lorem ipsum dolor sit amet.",
+    "welcomeMessage": "Hi there, Lorem ipsum dolor sit amet.",
     "skills": [
         "awesomeness", "grosisitud", "excelencia", "Perfect Pixel"
     ],
@@ -46,7 +46,7 @@ var education = {
             "Pedagogía",
             "Informática"
         ],
-        "date": "2010 - 2015",
+        "dates": "2010 - 2015",
         "url": "http://consudec.edu.ar"
     }],
     "onlineCourses": [{
@@ -60,7 +60,7 @@ var education = {
 var projects = {
     "projects": [{
         "title": "Sample 1 - lalala lala",
-        "date": "2015",
+        "dates": "2015",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         "images": [
             "./images/project_1.jpg",
@@ -81,7 +81,7 @@ bio.display = function() {
     var formattedGithub = HTMLgithub.replace("%data%", this.contacts.github);
     var formattedLocation = HTMLlocation.replace("%data%", this.contacts.location);
     var formattedBioPic = HTMLbioPic.replace("%data%", this.biopic);
-    var formattedMsg = HTMLwelcomeMsg.replace("%data%", this.welcomeMessege);
+    var formattedMsg = HTMLwelcomeMsg.replace("%data%", this.welcomeMessage);
 
     // inserting bio items into html
     $("#header").prepend(formattedRole, formattedName, formattedBioPic, formattedMsg);
@@ -133,7 +133,7 @@ projects.display = function() {
     this.projects.forEach(function(project) {
         // formatting pojects into html
         var formattedProjTitle = HTMLprojectTitle.replace("%data%", project.title);
-        var formattedProjDates = HTMLprojectDates.replace("%data%", project.date);
+        var formattedProjDates = HTMLprojectDates.replace("%data%", project.dates);
         var formattedProjDesc = HTMLprojectDescription.replace("%data%", project.description);
 
         // adding pojects to the dom
@@ -160,7 +160,7 @@ education.display = function() {
         // formatting schools into html
         var formattedSchName = HTMLschoolName.replace("%data%", sch.name);
         var formattedSchDegree = HTMLschoolDegree.replace("%data%", sch.degree);
-        var formattedSchDates = HTMLschoolDates.replace("%data%", sch.date);
+        var formattedSchDates = HTMLschoolDates.replace("%data%", sch.dates);
         var formattedSchLocation = HTMLschoolLocation.replace("%data%", sch.location);
         var formattedSchMajor = HTMLschoolMajor.replace("%data%", sch.majors);
 
